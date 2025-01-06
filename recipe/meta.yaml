@@ -11,15 +11,15 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
   host:
-    - python >=3.5
+    - python {{ python_min }}
     - pip
   run:
-    - python >=3.5
+    - python >={{ python_min }}
     - scikit-learn
     - scipy
     - numpy
@@ -27,6 +27,8 @@ requirements:
     - click
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - spampy
 
